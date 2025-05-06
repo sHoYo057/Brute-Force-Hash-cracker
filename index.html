@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brute-Force Password Cracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-6 text-center">Brute-Force Password Cracker</h1>
+        <form method="POST" class="space-y-4">
+            <div>
+                <label for="target_hash" class="block text-sm font-medium text-gray-700">Target Hash</label>
+                <input type="text" name="target_hash" id="target_hash" required
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+            </div>
+            <div>
+                <label for="algorithm" class="block text-sm font-medium text-gray-700">Hash Algorithm</label>
+                <select name="algorithm" id="algorithm" required
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <option value="">Select algorithm</option>
+                    <option value="md5">MD5</option>
+                    <option value="sha1">SHA-1</option>
+                    <option value="sha256">SHA-256</option>
+                </select>
+            </div>
+            <div>
+                <label for="max_length" class="block text-sm font-medium text-gray-700">Max Password Length (optional)</label>
+                <input type="number" name="max_length" id="max_length" min="1" placeholder="Default is 5"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+            </div>
+            <button type="submit"
+                class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">Crack Password</button>
+        </form>
+        {% if error %}
+        <p class="mt-4 text-red-600 font-semibold">{{ error }}</p>
+        {% endif %}
+        {% if result %}
+        <p class="mt-4 text-green-600 font-semibold">{{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
